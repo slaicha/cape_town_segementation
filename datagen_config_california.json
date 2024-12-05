@@ -1,0 +1,9 @@
+{
+    "image_path": "/home/as1233/data/",
+    "json_path": "/home/as1233/data/metadata/SolarArrayPolygons.geojson",
+    "dataset_path": "/home/as1233/SolarDetection/dataset",
+    "gers": false,
+    "image_size": 128,
+    "shuffle": true,
+    "test_split": 0.25
+}
