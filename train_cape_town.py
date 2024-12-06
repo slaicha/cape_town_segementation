@@ -118,7 +118,6 @@ cp_train_loader = DataLoader(cp_train_dataset, batch_size=32, shuffle=True, num_
 cp_valid_loader = DataLoader(cp_valid_dataset, batch_size=32, shuffle=False, num_workers=4)
 cp_test_loader = DataLoader(cp_test_dataset, batch_size=32, shuffle=False, num_workers=4)
 
-# Define constants
 EPOCHS = 10
 T_MAX = EPOCHS * len(cp_train_loader)
 OUT_CLASSES = 1
@@ -134,7 +133,6 @@ model = SolarModel.load_from_checkpoint(
     T_max = T_MAX
 )
 
-# Move the model to GPU
 model.to('cuda')
 
 
@@ -147,16 +145,15 @@ checkpoint_callback = ModelCheckpoint(
 )
 
 
-# Define the trainer with multi-GPU support
 trainer = pl.Trainer(
     max_epochs=EPOCHS,
     log_every_n_steps=1,
     callbacks=[checkpoint_callback],
-    devices=-1,  # Use all available GPUs
-    accelerator='gpu',  # Specify the type of accelerator
-    strategy='ddp',  # Use Distributed Data Parallel strategy
-    precision=16,  # Enable mixed precision training
-    accumulate_grad_batches=4  # Increase gradient accumulation to reduce batch size
+    devices=-1, 
+    accelerator='gpu',  
+    strategy='ddp',  
+    precision=16,  
+    accumulate_grad_batches=4  
 )
 
 # Train the model
