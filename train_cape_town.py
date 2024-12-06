@@ -11,15 +11,16 @@ from segmentation import SolarModel
 
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.loggers import CSVLogger
+
 
 
 
 # Clear GPU cache
 # torch.cuda.empty_cache()
 
-# Set environment variables
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
-os.environ['CUDA_VISIBLE_DEVICES'] = '0,3,5'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0,2,3,5,6,7'
 
 
 # Paths
@@ -114,14 +115,16 @@ cp_test_dataset = Dataset(
     classes=CLASSES,
 )
 
-cp_train_loader = DataLoader(cp_train_dataset, batch_size=32, shuffle=True, num_workers=4)
-cp_valid_loader = DataLoader(cp_valid_dataset, batch_size=32, shuffle=False, num_workers=4)
-cp_test_loader = DataLoader(cp_test_dataset, batch_size=32, shuffle=False, num_workers=4)
+cp_train_loader = DataLoader(cp_train_dataset, batch_size=16, shuffle=True, num_workers=4)
+cp_valid_loader = DataLoader(cp_valid_dataset, batch_size=16, shuffle=False, num_workers=4)
+cp_test_loader = DataLoader(cp_test_dataset, batch_size=16, shuffle=False, num_workers=4)
 
-EPOCHS = 10
+# Define constants
+EPOCHS = 20
 T_MAX = EPOCHS * len(cp_train_loader)
 OUT_CLASSES = 1
 
+csv_logger = CSVLogger(save_dir='/home/as1233/SolarDetection/logs', name='solar_model_training')
 
 # Load the trained model on california dataset
 model = SolarModel.load_from_checkpoint(
@@ -133,6 +136,7 @@ model = SolarModel.load_from_checkpoint(
     T_max = T_MAX
 )
 
+# Move the model to GPU
 model.to('cuda')
 
 
@@ -149,11 +153,12 @@ trainer = pl.Trainer(
     max_epochs=EPOCHS,
     log_every_n_steps=1,
     callbacks=[checkpoint_callback],
-    devices=-1, 
+    devices=-1,  
     accelerator='gpu',  
     strategy='ddp',  
     precision=16,  
-    accumulate_grad_batches=4  
+    accumulate_grad_batches=4,  
+    logger=csv_logger  
 )
 
 # Train the model
@@ -162,3 +167,15 @@ trainer.fit(
     train_dataloaders=cp_train_loader,
     val_dataloaders=cp_valid_loader,
 )
+
+
+# print eval metrics 
+model.eval()
+
+valid_metrics = trainer.validate(model, dataloaders=cp_valid_loader, verbose=False)
+print(valid_metrics)
+
+
+# print test metrics
+test_metrics = trainer.test(model, dataloaders=cp_test_loader, verbose=False)
+print(test_metrics)
