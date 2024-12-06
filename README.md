@@ -29,8 +29,19 @@ To generate a dataset from satellite images and a polygon file, run the `data_ge
 Data augmentation is used in the project to get the most out of the accessible dataset. The methods used are vertical and horizontal flips of image samples and its corresponding binary mask. 
 The image sample has a 50% chance of being flipped along each axis, essentially making it possible to generate four total training samples from each training sample in the original dataset. The ground truth label is flipped along with the sample. 
 
+### Sample California image mask pair
+![Alt text](cape_town_segmentation/data/sample_california_dataset/i_0.png "image")
+![Alt text](cape_town_segmentation/data/sample_california_dataset/m_0.png "mask")
+
+
+
 ## Cape Town Dataset
 To generate image masks pairs of the Cape Town images, we first needed to preprocess the annotations and create a comprehensive geodataframe that contains all the relevant information of the polygon annotations. This geodataframe follows the same structure as the one provided with the California dataset. You can find all the annotations processing details and steps in the  `data_processing_cape_town.ipynb` notebook. The final geodataframe can be found in the main directory under the name `annotations_final.geojson`. Sample image mask pairs are in the folder sample_cape_town_dataset.
+
+### Sample Cape Town image mask pair 
+![Alt text](cape_town_segmentation/data/sample_cape_town_dataset/i_W07C_4_8_4.png "image")
+![Alt text](cape_town_segmentation/data/sample_cape_town_dataset/m_W07C_4_8_4.png "mask")
+
 
 # Training 
 The segmentation model used for training is the U-Net. The details of the training on the California dataset and the results can be found in the `segmentation.ipynb` notebook.
