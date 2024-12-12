@@ -50,5 +50,5 @@ To generate image mask pairs of the Cape Town images, we first need to preproces
 
 
 # Training 
-The segmentation model used for training is the U-Net. The details of the training on the California dataset and the results can be found in the `segmentation.ipynb` notebook. To run the training on the California dataset, please follow the instructions in `segmentation.ipynb` notebook, and to fine-tune the model, please run the `segmentation_cape_town.py` script.
+The segmentation model used for training is the U-Net. The details of the training on the California dataset and the results can be found in the `segmentation.ipynb` notebook. To run the training on the California dataset, please follow the instructions in `segmentation.ipynb` notebook, and to fine-tune the model, please run the `train_cape_town.py` script.
 
