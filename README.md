@@ -31,8 +31,8 @@ The image sample has a 50% chance of being flipped along each axis, essentially 
 
 ### Sample California image mask pair
 <p align="center">
-  <img src="data/sample_california_dataset/i_0.png" alt="image" width="45%" style="display:inline-block;"/>
-  <img src="data/sample_california_dataset/m_0.png" alt="mask" width="45%" style="display:inline-block;"/>
+  <img src="data/sample_california_dataset/i_0.png" alt="image" width="30%" style="display:inline-block;"/>
+  <img src="data/sample_california_dataset/m_0.png" alt="mask" width="30%" style="display:inline-block;"/>
 </p>
 
 
@@ -43,8 +43,8 @@ To generate image mask pairs of the Cape Town images, we first need to preproces
 ### Sample Cape Town image mask pair 
 
 <p align="center">
-  <img src="data/sample_cape_town_dataset/i_W07C_4_8_4.png" alt="image" width="45%" style="display:inline-block;"/>
-  <img src="data/sample_cape_town_dataset/m_W07C_4_8_4.png" alt="mask" width="45%" style="display:inline-block;"/>
+  <img src="data/sample_cape_town_dataset/i_W07C_4_8_4.png" alt="image" width="30%" style="display:inline-block;"/>
+  <img src="data/sample_cape_town_dataset/m_W07C_4_8_4.png" alt="mask" width="30%" style="display:inline-block;"/>
 </p>
 
 
