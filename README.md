@@ -1,9 +1,9 @@
 # Data processing
 
 ## California Dataset
-To generate image mask pais of the california dataset, I followed the instructions in this repo https://github.com/A-Stangeland/SolarDetection. The main module is `data_generation_california.py`
+To generate image mask pais of the california dataset, please follow the instructions in this repo https://github.com/A-Stangeland/SolarDetection. The main module is `data_generation_california.py`
 
-These are their instructions (edited):
+These are the instructions (edited):
 
 The data generator class to use depends on the data source, as US and French satellite data have different sizes, and thus require different approaches. 
 The US dataset is composed of images that are 5000 by 5000 pixels in sixe and usage of the ```DatasetGenerator``` class is created with images of this size in mind.
@@ -38,7 +38,7 @@ The image sample has a 50% chance of being flipped along each axis, essentially 
 
 
 ## Cape Town Dataset
-To generate image masks pairs of the Cape Town images, we first needed to preprocess the annotations and create a comprehensive geodataframe that contains all the relevant information of the polygon annotations. This geodataframe follows the same structure as the one provided with the California dataset. You can find all the annotations processing details and steps in the  `data_processing_cape_town.ipynb` notebook. The final geodataframe can be found in the main directory under the name `annotations_final.geojson`. Sample image mask pairs are in the folder sample_cape_town_dataset.
+To generate image mask pairs of the Cape Town images, we first need to preprocess the annotations and create a comprehensive geodataframe that contains all the relevant information of the polygon annotations. This geodataframe follows the same structure as the one provided with the California dataset. You can find all the annotations processing details and steps in the  `data_processing_cape_town.ipynb` notebook. However, the images and annotations layers can not be shared as they confidential. The final geodataframe can be found in the main directory under the name `annotations_final.geojson`. Sample image mask pairs are in the folder sample_cape_town_dataset.
 
 ### Sample Cape Town image mask pair 
 
@@ -50,5 +50,5 @@ To generate image masks pairs of the Cape Town images, we first needed to prepro
 
 
 # Training 
-The segmentation model used for training is the U-Net. The details of the training on the California dataset and the results can be found in the `segmentation.ipynb` notebook.
+The segmentation model used for training is the U-Net. The details of the training on the California dataset and the results can be found in the `segmentation.ipynb` notebook. To run the training on the California dataset, please follow the instructions in `segmentation.ipynb` notebook, and to fine-tune the model, please run the `segmentation_cape_town.py` script.
 
